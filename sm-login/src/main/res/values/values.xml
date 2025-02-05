@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sm_login_reg_text_hint">请输入手机号/邮箱</string>
+    <string name="sm_login_error_tips">请输入正确的手机号/邮箱</string>
+    <string name="sm_login_pwd_length_greater_than_16">密码不超过16位</string>
+    <string name="sm_login_modify_pwd">修改密码</string>
+    <string name="sm_login_pwd_please_input">请输入密码</string>
+
+    <string name="sm_login_notice_hint1">我已阅读并同意</string>
+    <string name="sm_login_notice_hint2">服务协议</string>
+    <string name="sm_login_notice_hint3">和</string>
+    <string name="sm_login_notice_hint4">隐私政策</string>
+    <string name="sm_login_password_again_hint">请再次输入密码</string>
+    <string name="sm_login_password_hint">请输入密码</string>
+    <string name="sm_login_password_origin">请输入原始密码</string>
+    <string name="sm_login_pls_type_code">输入验证码</string>
+    <string name="sm_login_pwd_length_should_greater_eight">密码至少8位</string>
+    <string name="sm_login_pwd_length_should_greater_six">密码至少6位</string>
+    <string name="sm_login_pwd_length_should_less_than_20">密码最大长度为16位</string>
+    <string name="sm_login_pwd_malformed">密码格式不正确</string>
+    <string name="sm_login_register_tips1">还没有账号，</string>
+    <string name="sm_login_register_tips2">注册</string>
+    <string name="sm_login_reset_pwd">重置密码</string>
+    <string name="sm_login_reset_pwd_fail">密码修改失败</string>
+    <string name="sm_login_reset_pwd_success">密码修改成功</string>
+    <string name="sm_login_set_phone_or_email_fail">设置失败</string>
+    <string name="sm_login_set_phone_or_email_success">设置成功</string>
+    <string name="sm_login_set_pwd">设置密码</string>
+    <string name="sm_login_set_pwd_two_pwd_different">两次密码不一致</string>
+    <string name="sm_login_welcome">欢迎登录</string>
+    <string name="sm_login_welcome2">看的懂 · 看的美 · 看的久</string>
+
+    <string name="sm_login_forget_pwd_title">验证账号</string>
+    <string name="sm_login_forget_pwd_title2">修改手机号</string>
+    <string name="sm_login_forget_pwd_title3">修改邮箱</string>
+
+    <string name="sm_login_get_verify_code">获取验证码</string>
+
+    <string name="sm_login_bottom_link_one_key">一键登录</string>
+    <string name="sm_login_bottom_link_password_login">密码登录</string>
+    <string name="sm_login_bottom_verify_code_login">验证码登录</string>
+    <string name="sm_login_code_send">验证码已发送至</string>
+
+    <string name="sm_login_login_failed">登录失败</string>
+    <string name="sm_login_login_success">登录成功</string>
+    <string name="sm_login_invalid_format">格式不正确</string>
+    <string name="sm_login_agree_privacy_terms">请同意服务协议和隐私政策</string>
+    <string name="sm_login_register">注册</string>
+    <string name="sm_login_confirm">确定</string>
+    <string name="sm_login_code_login_failed">验证码错误，请重新输入</string>
+    <string name="sm_login_desc_of_can_require_again">%s秒后可重新获取验证码</string>
+    <string name="sm_login_next_step">下一步</string>
+    <string name="sm_login_one_key_login_failed">一键登录失败</string>
+    <string name="sm_login_pwd_can_not_be_empty">请输入密码</string>
+    <string name="sm_login_pwd_mal_formed">密码格式不正确</string>
+    <string name="sm_login_pwd_forget">忘记密码？</string>
+    <string name="sm_login_require_code">获取验证码</string>
+    <string name="sm_login_login">登录</string>
+    <string name="sm_login_phone_number_one_key_login">本机号码一键登录</string>
+    <string name="sm_login_other_login_method">其它登录方式</string>
+    <string name="sm_login_reg_title">注册</string>
+
+    <string name="sm_login_forget_pwd">忘记密码？</string>
+    <string name="sm_login_get_verify_code_again">重新获取验证码</string>
+    <string name="sm_login_new_again_password_hint">请再次输入新密码</string>
+    <string name="sm_login_new_password_hint">请输入新密码</string>
+    <string name="sm_pwd_tips">密码为8-16位字符,需含大小写字母、数字或特殊符号其中两种</string>
+</resources>

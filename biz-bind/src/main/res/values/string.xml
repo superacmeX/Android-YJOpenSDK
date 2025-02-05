@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+
+    <string name="qr_scan_title">扫一扫</string>
+    <string name="qr_scan_pk">请输入productKey</string>
+    <string name="qr_scan_dn">请输入deviceName</string>
+
+    <string name="wifi_bind_next">下一步</string>
+    <string name="wifi_bind_reset_camera">重置摄像头</string>
+    <string name="bluetooth_device_reset_tips1">1.长按开关键5秒,听到提示“设备已开机”</string>
+    <string name="bluetooth_device_reset_tips2">2.连续长按RST5秒,设备会自检重启</string>
+    <string name="bluetooth_device_reset_tips3">3.看到设备蓝灯闪烁,听到提示“请使用神眸软件绑定”</string>
+
+    <string name="wifi_bind_select_wifi">Wi-Fi绑定</string>
+    <string name="input_wifi_tips">选择网络</string>
+    <string name="input_wifi_name">请输入或者选择WIFI名称</string>
+    <string name="input_wifi_pwd_name">请输入WIFI密码</string>
+
+    <string name="bind_scan_title">连接网络</string>
+    <string name="bind_scan_tips">请将设备尽量靠近路由器</string>
+    <string name="bind_scan_progress_tips1">获取设备信息</string>
+    <string name="bind_scan_progress_tips2">注册到云服务</string>
+    <string name="bind_scan_progress_stop">主动中止</string>
+
+    <string name="bind_success_tips">设备绑定成功</string>
+    <string name="bind_success_device_name_tips">给我取个好记的名字吧~</string>
+    <string name="bind_success_input_device_name">请输入设备名称</string>
+    <string name="flow_name_tip">将设备添加至分组，查看更方便哦~</string>
+    <string name="bind_success_done">完成</string>
+    <string name="common_input_emoji_tip">输入的名称不能包含表情!</string>
+    <string name="input_device_name_length_limit_tip">设备名称过长</string>
+
+    <string name="bind_fail_tips">设备绑定失败</string>
+    <string name="bind_fail_retry">重试</string>
+    <string name="bind_fail_return">返回首页</string>
+
+    <string name="bind_scan_reject_quit_tip">正在绑定过程中，不允许退出，请稍候</string>
+
+
+    <string name="connect_confirm_title">连接设备热点</string>
+    <string name="connect_confirm_tip">请加入设备的Wifi热点，以便设备和路由器之间进行通讯</string>
+    <string name="connect_confirm_join_tip">加入热点</string>
+
+    <string name="device_not_exist">设备不存在</string>
+    <string name="common_confirm">确定</string>
+
+    <string name="bind_scan_device_qr_tip">请选择带有神眸设备二维码的图片</string>
+
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 主动连接热点 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+    <application>
+        <activity
+            android:name=".BindActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+    </application>
+</manifest>

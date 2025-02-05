@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">OpenSdk-Demo</string>
+    <string name="title_activity_video_data_list">VideoDataListActivity</string>
+</resources>

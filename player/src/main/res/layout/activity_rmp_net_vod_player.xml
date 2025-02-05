@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- tools:ignore is needed because lint thinks this can be replaced with a merge. Replacing this
+     with a merge causes the fullscreen SurfaceView not to be centered. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="MergeRootFrame">
+
+    <LinearLayout
+        android:id="@+id/ctrl_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp">
+
+            <android.widget.Button
+                android:id="@+id/pause_btn"
+                android:text="pause"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:minWidth="45dp"
+                android:layout_height="40dp"
+                android:textSize="@dimen/btn_text_size"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/btn_shape"/>
+
+            <android.widget.Button
+                android:id="@+id/resume_btn"
+                android:text="resume"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:minWidth="45dp"
+                android:layout_height="40dp"
+                android:textSize="@dimen/btn_text_size"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/btn_shape"/>
+
+            <android.widget.Button
+                android:id="@+id/record_btn"
+                android:text="start rec"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:minWidth="45dp"
+                android:layout_height="40dp"
+                android:textSize="@dimen/btn_text_size"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/btn_shape"
+                />
+
+            <android.widget.Button
+                android:id="@+id/restart_btn"
+                android:text="restart"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:minWidth="45dp"
+                android:layout_height="40dp"
+                android:textSize="@dimen/btn_text_size"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/btn_shape"
+                />
+
+            <android.widget.Button
+                android:id="@+id/mute_btn"
+                android:text="mute"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:minWidth="45dp"
+                android:layout_height="40dp"
+                android:textSize="@dimen/btn_text_size"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/btn_shape"/>
+
+            <android.widget.Button
+                android:id="@+id/stop_call"
+                android:text="stop"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:minWidth="45dp"
+                android:layout_height="40dp"
+                android:textSize="@dimen/btn_text_size"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/btn_shape" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp">
+
+                <android.widget.Button
+                    android:id="@+id/speed_btn"
+                    android:text="speed"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:minWidth="45dp"
+                    android:layout_height="40dp"
+                    android:textSize="@dimen/btn_text_size"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/btn_shape"
+                    />
+
+                <EditText
+                    android:id="@+id/speed_scale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:ems="2"
+                    android:text="1">
+                </EditText>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <android.widget.Button
+                    android:id="@+id/seek_btn"
+                    android:text="seek"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:minWidth="45dp"
+                    android:layout_height="40dp"
+                    android:textSize="@dimen/btn_text_size"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/btn_shape"
+                    />
+
+                <EditText
+                    android:id="@+id/seek_secs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:ems="3"
+                    android:textSize="16sp"
+                    android:text="30"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/log_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scrollbars="vertical" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.microbit.rmplayer.RMPVideoView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/loading_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:gravity="center"
+            android:text="loading"/>
+    </FrameLayout>
+
+
+</LinearLayout>

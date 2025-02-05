@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="login_content_id" type="id" />
+    <item name="sign_in_fragment" type="id" />
+    <item name="phone_sign_up_fragment" type="id" />
+    <item name="sms_code_fragment" type="id" />
+    <item name="pwd_login_fragment" type="id" />
+    <item name="set_pwd_fragment" type="id" />
+    <item name="phone_forget_pwd_fragment" type="id" />
+    <item name="fragment_region_switch" type="id" />
+    <item name="pwd_sign_in_fragment2" type="id" />
+</resources>

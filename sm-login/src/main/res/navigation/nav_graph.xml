@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/sign_in_fragment">
+    <fragment
+        android:id="@+id/sign_in_fragment"
+        android:name="com.acme.login.view.VerifyCodeLoginFragment"
+        android:label="Sign in" />
+
+    <fragment
+        android:id="@+id/sms_code_fragment"
+        android:name="com.acme.login.view.VerifyCodeInputFragment"
+        android:label="Get SMS Code" />
+
+    <fragment
+        android:id="@+id/phone_sign_up_fragment"
+        android:name="com.acme.login.view.PhoneSignUpFragment"
+        android:label="phone sign up" />
+
+    <fragment
+        android:id="@+id/set_pwd_fragment"
+        android:name="com.superacme.login.view.SetPWDFragment"
+        android:label="set pwd" />
+
+    <fragment
+        android:id="@+id/phone_forget_pwd_fragment"
+        android:name="com.acme.login.view.PhoneForgetPWDFragment"
+        android:label="set pwd" />
+
+    <fragment
+        android:id="@+id/pwd_sign_in_fragment2"
+        android:name="com.acme.login.view.VerifyCodeLoginFragment"
+        android:label="pwd login" />
+
+<!--    <fragment-->
+<!--        android:id="@+id/fragment_region_switch"-->
+<!--        android:name="com.superacme.login.view.RegionSwitchFragment"-->
+<!--        android:label="region switch" />-->
+</navigation>
