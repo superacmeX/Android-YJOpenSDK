@@ -70,10 +70,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     implementation("com.google.code.gson:gson:2.8.5")
     //implementation("com.superacme.cinmoore:lib-settings-compose:0.0.6-SNAPSHOT")
-    implementation("com.superacme.android:opensdk:0.5.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
     implementation("com.alibaba:fastjson:1.2.40")
-
+    api(project(":lib-core"))
 
 }

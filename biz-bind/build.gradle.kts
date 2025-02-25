@@ -75,6 +75,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
     implementation("androidx.compose.material:material:1.6.0")
-    implementation("com.superacme.android:opensdk:0.5.0")
     implementation("com.superacme.android:sdk-device-connect-ap:0.5.0")
+    api(project(":lib-core"))
 }

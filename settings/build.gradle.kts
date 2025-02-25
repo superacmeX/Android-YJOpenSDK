@@ -64,7 +64,6 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     //implementation("com.superacme.cinmoore:lib-settings-compose:0.0.6-SNAPSHOT")
-    implementation("com.superacme.android:opensdk:0.5.0")
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
@@ -74,6 +73,6 @@ dependencies {
 //    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
 
-    implementation(project(":lib-core"))
+    api(project(":lib-core"))
 
 }

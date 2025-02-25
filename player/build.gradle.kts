@@ -30,6 +30,6 @@ android {
 }
 
 dependencies {
-    implementation("com.superacme.android:opensdk:0.5.0")
+    api(project(":lib-core"))
     implementation("androidx.appcompat:appcompat:1.4.1")
 }

@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+
 android {
     namespace = "com.acme.opensdk.demo"
     compileSdk = 34
@@ -74,10 +75,10 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("com.superacme.android:opensdk:0.5.0")
     implementation("com.microbt:rmplayer:1.4.1")
 
     implementation(project(":sm-login"))
     implementation(project(":biz-bind"))
     implementation(project(":home"))
+    api(project(":lib-core"))
 }

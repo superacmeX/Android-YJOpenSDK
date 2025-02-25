@@ -80,8 +80,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
     implementation("com.alibaba:fastjson:1.2.40")
     debugImplementation(libs.androidx.ui.tooling)
-    implementation("com.superacme.android:opensdk:0.5.0")
-
+    api(project(":lib-core"))
 }
 
 sourceSets {

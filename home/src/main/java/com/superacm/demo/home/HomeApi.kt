@@ -8,6 +8,6 @@ import retrofit2.http.POST
 interface HomeApi {
 
     @POST("/user/api/v2/allGroupDeviceList")
-    suspend fun getDeviceList(): NetResult<HomeModel>
+    suspend fun getDeviceList():NetResult<HomeModel>
 
 }
