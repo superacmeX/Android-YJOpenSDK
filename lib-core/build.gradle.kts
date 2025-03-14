@@ -50,5 +50,5 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-    api("com.superacme.android:opensdk:0.6.1-SNAPSHOT")
+    api("com.superacme.android:opensdk:0.6.2-SNAPSHOT")
 }
