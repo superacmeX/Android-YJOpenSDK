@@ -1,3 +1,7 @@
+# Android opensdk FAQ
+https://alidocs.dingtalk.com/i/nodes/QOG9lyrgJPEgEbjAT2y6ywkn8zN67Mw4?utm_scene=person_space
+
+
 # 开放平台云端对接
 https://alidocs.dingtalk.com/i/p/2ZRPG24ANMrXBpvbBgX4YaW09M1Z3m8e
 
