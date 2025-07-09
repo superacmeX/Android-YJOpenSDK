@@ -38,6 +38,8 @@ data class EventItemUIData(
     val type: Int,
     val device: Device,
     val record: MediaRecord? = null,
+    val cvodUrl: String? = null,
+    val ext: String? = null
 )
 
 @Composable
