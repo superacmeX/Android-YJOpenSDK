@@ -37,11 +37,7 @@ public class RMPNetLivePlayerActivity extends Activity implements RMPlayerListen
     };
 
     private RMPVideoView renderView;
-
-    //private RMPNetPlayerFactory factory;
     private IRMPLivePlayer livePlayer;
-    //private EglBase eglBase;
-
     private PlayerParam playParam;
 
     private ViewLog viewLog;
@@ -51,7 +47,6 @@ public class RMPNetLivePlayerActivity extends Activity implements RMPlayerListen
     private TextView loadingView;
     private boolean isTalking = false;
     private boolean isRecording = false;
-    //private String signalServer = "106.15.92.157:9090";
 
     private Runnable getDurationTask = new Runnable() {
         @Override
@@ -73,7 +68,6 @@ public class RMPNetLivePlayerActivity extends Activity implements RMPlayerListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rmp_net_live_player);
-
         playParam = getIntent().getParcelableExtra(PlayerParam.PLAY_PARAMS);
 
         RMPLog.setLogCallback(new RMPLog.LogCallback() {
@@ -180,7 +174,7 @@ public class RMPNetLivePlayerActivity extends Activity implements RMPlayerListen
     }
 
     private void doCall() {
-        RMPNetPlayerBuilder builder = new RMPNetPlayerBuilder(getApplicationContext());
+        RMPNetPlayerBuilder builder = new RMPNetPlayerBuilder(getApplicationContext(), RMPEngine.getDefault(getApplicationContext()));
         builder.setDeviceInfo(playParam.deviceName, playParam.productKey);
 
         livePlayer = builder.createLivePlayer();
@@ -303,25 +297,11 @@ public class RMPNetLivePlayerActivity extends Activity implements RMPlayerListen
 
     private String getSnapshotFile() {
         File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "snapshot-" + System.currentTimeMillis() + ".jpeg");
-        //if (!f.exists()) {
-        //    try {
-        //        f.createNewFile();
-        //    } catch (IOException e) {
-        //        throw new RuntimeException(e);
-        //    }
-        //}
         return f.getAbsolutePath();
     }
 
     private String getRecordingFile() {
         File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "net-rec-live-" + System.currentTimeMillis() + ".mp4");
-        //if (!f.exists()) {
-        //    try {
-        //        f.createNewFile();
-        //    } catch (IOException e) {
-        //        throw new RuntimeException(e);
-        //    }
-        //}
         return f.getAbsolutePath();
     }
 
@@ -373,13 +353,12 @@ public class RMPNetLivePlayerActivity extends Activity implements RMPlayerListen
         livePlayer.setVideoView(renderView);
         livePlayer.start();
 
-        livePlayer.setSeiDataCallback(new IRMPlayer.SEIDataCallback() {
+        livePlayer.setSeiDataCallback(new RMPSEIDataCallback() {
             @Override
-            public void OnSeiData(long pts, byte[] sei_data) {
-                //RMPLog.d(TAG, "recv sei data pts=%d, size=%d", pts, sei_data.length);
+            public void OnSeiData(int chl, long pts, byte[] sei_data) {
+                RMPLog.d(TAG, "recv sei data pts=%d, size=%d", pts, sei_data.length);
             }
         });
-
         livePlayer.setVideoSink(new VideoSink() {
             @Override
             public void onFrame(VideoFrame frame) {
@@ -405,11 +384,13 @@ public class RMPNetLivePlayerActivity extends Activity implements RMPlayerListen
 
     @Override
     public void OnError(int type, int code, String desc) {
-
+        RMPLog.e(TAG, "Player error: type=%d, code=%d, desc=%s", type, code, desc);
+        printLine("Player error: type=%d, code=%d, desc=%s", type, code, desc);
     }
 
     @Override
     public void OnPlayerStateChange(int state, int extra) {
+        RMPLog.i(TAG, "Player state changed: state=%d, extra=%d", state, extra);
         if (state == RMPlayerState.PLAYER_STARTED) {
             loadingView.post(() -> {
                 loadingView.setVisibility(View.GONE);
@@ -423,61 +404,65 @@ public class RMPNetLivePlayerActivity extends Activity implements RMPlayerListen
 
     @Override
     public void OnTalkStateChange(int state) {
-
+        RMPLog.i(TAG, "Talk state changed: state=%d", state);
     }
 
     @Override
     public void OnPlaybackSpeedUpdate(int speed) {
-
+        RMPLog.i(TAG, "Playback speed updated: speed=%d", speed);
     }
 
     @Override
     public void OnSeekComplete(boolean success) {
-
+        RMPLog.i(TAG, "Seek complete: success=%b", success);
     }
 
     @Override
     public void OnBufferStateUpdate(int state, long buffer_duration) {
-
+        RMPLog.i(TAG, "Buffer state update: state=%d, duration=%d", state, buffer_duration);
     }
 
     @Override
     public void OnFirstFrameRendered(long elapse_ms) {
-
+        RMPLog.i(TAG, "First frame rendered: elapse=%dms", elapse_ms);
     }
 
     @Override
-    public void OnVideoSizeChanged(int width, int height) {
-
+    public void OnVideoSizeChanged(int channel, int width, int height) {
+        RMPLog.i(TAG, "channel id:%d, Video size changed: %dx%d", width, height);
     }
 
     @Override
     public void OnSnapshotResult(String file, int result, String desc) {
-
+        RMPLog.i(TAG, "Snapshot result: file=%s, result=%d, desc=%s", file, result, desc);
     }
 
     @Override
     public void OnFileRecordingStart(String file) {
-
+        RMPLog.i(TAG, "File recording started: %s", file);
+        printLine("File recording started: %s", file);
     }
 
     @Override
     public void OnFileRecordingError(String file, int code, String desc) {
-
+        RMPLog.e(TAG, "File recording error: file=%s, code=%d, desc=%s", file, code, desc);
+        printLine("File recording error: file=%s, code=%d, desc=%s", file, code, desc);
     }
 
     @Override
     public void OnFileRecordingFinish(String file) {
-
+        RMPLog.i(TAG, "File recording finished: %s", file);
+        printLine("File recording finished: %s", file);
     }
 
     @Override
     public void OnVodPlayProgress(long millis) {
-
+        RMPLog.i(TAG, "VOD play progress: %dms", millis);
     }
 
     @Override
     public void OnVodPlayComplete() {
-
+        RMPLog.i(TAG, "VOD play complete");
     }
+
 }
