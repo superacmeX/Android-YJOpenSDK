@@ -68,8 +68,8 @@ public class RMPApVodPlayerActivity extends AppCompatActivity implements RMPApLi
 
         config = PlayerConfig.createApVodConfig(
             this,
-            apIp != null ? apIp : "192.168.10.1",
-            apPort != null ? apPort : "8900",
+            apIp != null ? apIp : "192.168.43.1",
+            apPort != null ? apPort : "6684",
             localIp != null ? localIp : "",
             clientId != null ? clientId : "demo_client"
         );
@@ -92,11 +92,13 @@ public class RMPApVodPlayerActivity extends AppCompatActivity implements RMPApLi
     private void initPlayer() {
         RMPEngine engine = RMPEngine.getDefault(getApplicationContext());
         link = RMPApLink.create(this, engine);
+
+        link.init(config.getLocalIp(), config.getClientId());
+        link.connect(config.getApIp(), Integer.parseInt(config.getApPort()));
+
         RMPApConfig apConfig = new RMPApConfig(link);
         factory = RMPApPlayerFactory.create(this, apConfig);
         factory.setDecoderStrategy(config.getVdecodeStrategy());
-        link.init(config.getLocalIp(), config.getClientId());
-        link.connect(config.getApIp(), Integer.parseInt(config.getApPort()));
 
         renderView.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
         renderView.init();
@@ -106,17 +108,14 @@ public class RMPApVodPlayerActivity extends AppCompatActivity implements RMPApLi
         if (vodPlayer != null) {
             RMPLog.w(TAG, "doCall when vodPlayer != null, restarting playback");
             viewLog.printLine("Player already exists, restarting playback...");
-            // vodPlayer 已存在（处于 stop 状态），直接重新启动
             startPlayback();
             return;
         }
 
         if (factory == null) {
-            //activity released
             return;
         }
 
-        // Check if downloading
         if (isDownloading) {
             viewLog.printLine("Cannot play while downloading. Stop download first.");
             return;
@@ -321,14 +320,10 @@ public class RMPApVodPlayerActivity extends AppCompatActivity implements RMPApLi
 
     private void stopPlayback() {
         if (vodPlayer != null) {
-            // 如果正在录制，先停止录制
             if (isRecording) {
                 stopRecording();
             }
             vodPlayer.stop();
-            // 不释放 player，保持 stop 状态以便测试音频开关
-            // vodPlayer.release();
-            // vodPlayer = null;
         }
         isPlaying = false;
         totalDuration = 0;
@@ -400,13 +395,6 @@ public class RMPApVodPlayerActivity extends AppCompatActivity implements RMPApLi
     }
     private String getDownloadFile() {
         File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "ap-vod-" + System.currentTimeMillis() + ".mp4");
-        //if (!f.exists()) {
-        //    try {
-        //        f.createNewFile();
-        //    } catch (IOException e) {
-        //        throw new RuntimeException(e);
-        //    }
-        //}
         return f.getAbsolutePath();
     }
     private void startDownload() {
@@ -432,11 +420,9 @@ public class RMPApVodPlayerActivity extends AppCompatActivity implements RMPApLi
             
             viewLog.printLine("Creating AP VOD source...");
             viewLog.printLine("- Time range: " + startTimestamp + " - " + endTimestamp);
-            
-            // Create AP config with existing AP link
+
             RMPApConfig config = new RMPApConfig(link);
-            
-            // Create AP VOD source using simplified API pattern
+
             RMPApVodSource source = RMPMediaSource.createApVodSource(config);
             source.setRangeSec(startTimestamp, endTimestamp);
             
@@ -542,7 +528,6 @@ public class RMPApVodPlayerActivity extends AppCompatActivity implements RMPApLi
     }
 
     private void checkPermission() {
-        // Check for mandatory permissions.
         for (String permission : MANDATORY_PERMISSIONS) {
             if (checkCallingOrSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
                 logAndToast("Permission " + permission + " is not granted");

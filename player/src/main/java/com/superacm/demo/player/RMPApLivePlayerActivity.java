@@ -56,7 +56,6 @@ public class RMPApLivePlayerActivity extends AppCompatActivity implements RMPApL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rmp_ap_live_player);
 
-        // Create default config, can be customized via intent extras
         String apIp = getIntent().getStringExtra("ap_ip");
         String apPort = getIntent().getStringExtra("ap_port");
         String localIp = getIntent().getStringExtra("local_ip");
@@ -64,9 +63,9 @@ public class RMPApLivePlayerActivity extends AppCompatActivity implements RMPApL
 
         config = PlayerConfig.createApLiveConfig(
             this,
-            apIp != null ? apIp : "192.168.10.1",
-            apPort != null ? apPort : "8900",
-            localIp != null ? localIp : "",
+            apIp != null ? apIp : "192.168.43.1",
+            apPort != null ? apPort : "1664",
+            localIp != null ? localIp : "0.0.0.0",
             clientId != null ? clientId : "demo_client"
         );
 
@@ -93,12 +92,13 @@ public class RMPApLivePlayerActivity extends AppCompatActivity implements RMPApL
     private void initPlayer() {
         RMPEngine engine = RMPEngine.getDefault(getApplicationContext());
         link = RMPApLink.create(this, engine);
-        RMPApConfig apConfig = new RMPApConfig(link);
-        factory = RMPApPlayerFactory.create(this, apConfig);
-        factory.setDecoderStrategy(config.getVdecodeStrategy());
 
         link.init(config.getLocalIp(), config.getClientId());
         link.connect(config.getApIp(), Integer.parseInt(config.getApPort()));
+
+        RMPApConfig apConfig = new RMPApConfig(link);
+        factory = RMPApPlayerFactory.create(this, apConfig);
+        factory.setDecoderStrategy(config.getVdecodeStrategy());
 
         renderView.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
         renderView.setEnableHardwareScaler(false);
@@ -108,25 +108,11 @@ public class RMPApLivePlayerActivity extends AppCompatActivity implements RMPApL
 
     private String getSnapshotFile() {
         File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "snapshot-" + System.currentTimeMillis() + ".jpeg");
-        //if (!f.exists()) {
-        //    try {
-        //        f.createNewFile();
-        //    } catch (IOException e) {
-        //        throw new RuntimeException(e);
-        //    }
-        //}
         return f.getAbsolutePath();
     }
 
     private String getRecordingFile() {
         File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "recording-" + System.currentTimeMillis() + ".mp4");
-        //if (!f.exists()) {
-        //    try {
-        //        f.createNewFile();
-        //    } catch (IOException e) {
-        //        throw new RuntimeException(e);
-        //    }
-        //}
         return f.getAbsolutePath();
     }
 
@@ -164,7 +150,6 @@ public class RMPApLivePlayerActivity extends AppCompatActivity implements RMPApL
         loadingView.setTextColor(0xff00ff00);
 
         livePlayer.start();
-        //livePlayer.setRemoteMute(true);
         printLine("startPlay");
     }
 

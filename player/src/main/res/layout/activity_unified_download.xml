@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AP Mode Download Manager"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#007ACC"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Settings -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="12dp"
+        android:background="#F5F5F5"
+        android:padding="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Download Settings"
+            android:textStyle="bold"
+            android:textColor="#007ACC"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remote File Path"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/edit_ap_remote_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="e.g., 100MEDIA/video.mp4"
+            android:inputType="text"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Control Buttons Row 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="4dp">
+
+        <Button
+            android:id="@+id/btn_add_task"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="Add Task"
+            android:textSize="12sp"
+            android:layout_marginEnd="4dp" />
+
+        <Button
+            android:id="@+id/btn_add_batch"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="Add 5 Tasks"
+            android:textSize="12sp"
+            android:textColor="#FF6B6B"
+            android:layout_marginStart="4dp" />
+    </LinearLayout>
+
+    <!-- Control Buttons Row 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+
+        <Button
+            android:id="@+id/btn_start_all"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="Start All"
+            android:textSize="12sp"
+            android:layout_marginEnd="2dp" />
+
+        <Button
+            android:id="@+id/btn_pause_all"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="Pause All"
+            android:textSize="12sp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp" />
+
+        <Button
+            android:id="@+id/btn_cancel_all"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="Clear All"
+            android:textSize="12sp"
+            android:layout_marginStart="2dp" />
+    </LinearLayout>
+
+    <!-- Manager Status -->
+    <TextView
+        android:id="@+id/tv_manager_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ready"
+        android:textSize="13sp"
+        android:textColor="#555555"
+        android:padding="8dp"
+        android:background="#EEEEEE"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Task List -->
+    <ListView
+        android:id="@+id/list_tasks"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="#E0E0E0"
+        android:dividerHeight="1dp"
+        android:scrollbars="vertical" />
+
+</LinearLayout>
