@@ -64,7 +64,10 @@ class SampleApplication : Application() {
         RMPConfig.setBootConfig(this, RMPConfigRegion.RMP_REGION_CN, RMPConfigEnv.RMP_ENV_TEST);
 
         authLoginTest()
-
+        val token = YJSessionManager.getAccessToken()
+        if (token != null) {
+            com.microbit.rmplayer.RMPEngine.getDefault(this).updateToken(token)
+        }
 
     }
 

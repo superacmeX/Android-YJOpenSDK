@@ -7,194 +7,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="8dp"
     tools:ignore="MergeRootFrame">
 
-    <LinearLayout
-        android:id="@+id/ctrl_panel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingLeft="1dp"
-            android:paddingRight="1dp">
-
-            <android.widget.Button
-                android:id="@+id/pause_btn"
-                android:text="pause"
-                android:layout_marginLeft="3dp"
-                android:layout_width="wrap_content"
-                android:minWidth="45dp"
-                android:layout_height="40dp"
-                android:textSize="@dimen/btn_text_size"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/btn_shape"/>
-
-            <android.widget.Button
-                android:id="@+id/resume_btn"
-                android:text="resume"
-                android:layout_marginLeft="3dp"
-                android:layout_width="wrap_content"
-                android:minWidth="45dp"
-                android:layout_height="40dp"
-                android:textSize="@dimen/btn_text_size"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/btn_shape"/>
-
-            <android.widget.Button
-                android:id="@+id/record_btn"
-                android:text="start rec"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:layout_marginLeft="3dp"
-                android:layout_width="wrap_content"
-                android:minWidth="45dp"
-                android:layout_height="40dp"
-                android:textSize="@dimen/btn_text_size"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/btn_shape"
-                />
-
-            <android.widget.Button
-                android:id="@+id/restart_btn"
-                android:text="restart"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:layout_marginLeft="3dp"
-                android:layout_width="wrap_content"
-                android:minWidth="45dp"
-                android:layout_height="40dp"
-                android:textSize="@dimen/btn_text_size"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/btn_shape"
-                />
-
-            <android.widget.Button
-                android:id="@+id/mute_btn"
-                android:text="mute"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:layout_marginLeft="3dp"
-                android:layout_width="wrap_content"
-                android:minWidth="45dp"
-                android:layout_height="40dp"
-                android:textSize="@dimen/btn_text_size"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/btn_shape"/>
-
-            <android.widget.Button
-                android:id="@+id/stop_call"
-                android:text="stop"
-                android:layout_marginLeft="3dp"
-                android:layout_width="wrap_content"
-                android:minWidth="45dp"
-                android:layout_height="40dp"
-                android:textSize="@dimen/btn_text_size"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/btn_shape" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingLeft="1dp"
-            android:paddingRight="1dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="1dp"
-                android:paddingRight="1dp">
-
-                <android.widget.Button
-                    android:id="@+id/speed_btn"
-                    android:text="speed"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:layout_marginLeft="3dp"
-                    android:layout_width="wrap_content"
-                    android:minWidth="45dp"
-                    android:layout_height="40dp"
-                    android:textSize="@dimen/btn_text_size"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:background="@drawable/btn_shape"
-                    />
-
-                <EditText
-                    android:id="@+id/speed_scale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:inputType="number"
-                    android:ems="2"
-                    android:text="1">
-                </EditText>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <android.widget.Button
-                    android:id="@+id/seek_btn"
-                    android:text="seek"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:layout_marginLeft="3dp"
-                    android:layout_width="wrap_content"
-                    android:minWidth="45dp"
-                    android:layout_height="40dp"
-                    android:textSize="@dimen/btn_text_size"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:background="@drawable/btn_shape"
-                    />
-
-                <EditText
-                    android:id="@+id/seek_secs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:ems="3"
-                    android:textSize="16sp"
-                    android:text="30"/>
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/log_view"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scrollbars="vertical" />
-
+    <!-- 视频显示区域最大化 -->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <com.microbit.rmplayer.RMPVideoView
             android:id="@+id/video_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center" />
 
         <TextView
@@ -206,5 +31,132 @@
             android:text="loading"/>
     </FrameLayout>
 
+    <!-- 控制按钮分组排布 -->
+    <LinearLayout
+        android:id="@+id/ctrl_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/pause_btn"
+                android:text="pause"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/btn_shape"/>
+            <Button
+                android:id="@+id/resume_btn"
+                android:text="resume"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/btn_shape"/>
+            <Button
+                android:id="@+id/record_btn"
+                android:text="start rec"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/btn_shape"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/restart_btn"
+                android:text="restart"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/btn_shape"/>
+            <Button
+                android:id="@+id/mute_btn"
+                android:text="mute"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/btn_shape"/>
+            <Button
+                android:id="@+id/stop_call"
+                android:text="stop"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/btn_shape"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/speed_btn"
+                android:text="speed"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/btn_shape"/>
+            <EditText
+                android:id="@+id/speed_scale"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:inputType="number"
+                android:gravity="center"
+                android:text="1"/>
+            <Button
+                android:id="@+id/seek_btn"
+                android:text="seek"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/btn_shape"/>
+            <EditText
+                android:id="@+id/seek_secs"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:text="30"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 日志区放底部，可滑动 -->
+    <TextView
+        android:id="@+id/log_view"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:scrollbars="vertical"
+        android:background="#f5f5f5"
+        android:textColor="#333"
+        android:textSize="13sp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"/>
 
 </LinearLayout>
