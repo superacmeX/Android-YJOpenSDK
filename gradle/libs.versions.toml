@@ -1,6 +1,8 @@
 [versions]
 agp = "8.2.1"
 kotlin = "1.9.0"
+opensdk = "0.6.2-SNAPSHOT"
+rmplayer = "2.0.6"
 uiTooling = "1.7.5"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
@@ -21,6 +23,8 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-annotation-jvm = { group = "androidx.annotation", name = "annotation-jvm", version.ref = "annotationJvm" }
 androidx-core = { group = "androidx.core", name = "core", version.ref = "core" }
+opensdk = { module = "com.superacme.android:opensdk", version.ref = "opensdk" }
+rmplayer = { module = "com.microbt:rmplayer", version.ref = "rmplayer" }
 
 
 [plugins]

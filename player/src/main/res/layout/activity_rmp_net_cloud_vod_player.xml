@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- tools:ignore is needed because lint thinks this can be replaced with a merge. Replacing this
-     with a merge causes the fullscreen SurfaceView not to be centered. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -29,20 +26,11 @@
             android:background="@color/black"
             android:gravity="center"
             android:text="loading"/>
-
-        <TextView
-            android:id="@+id/player_stats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="fps: --, recv: -- KB/s, send: -- KB/s"
-            android:textColor="#ffff0011"
-            android:layout_gravity="bottom|start"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp"/>
     </FrameLayout>
 
-    <!-- 控制按钮分两行排布 -->
+    <!-- 控制按钮分组排布 -->
     <LinearLayout
+        android:id="@+id/ctrl_panel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -56,24 +44,24 @@
             android:gravity="center_horizontal">
 
             <Button
-                android:id="@+id/talk_btn"
-                android:text="talk"
+                android:id="@+id/pause_btn"
+                android:text="pause"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="40dp"
                 android:layout_margin="4dp"
                 android:background="@drawable/btn_shape"/>
             <Button
-                android:id="@+id/mute_btn"
-                android:text="mute"
+                android:id="@+id/resume_btn"
+                android:text="resume"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="40dp"
                 android:layout_margin="4dp"
                 android:background="@drawable/btn_shape"/>
             <Button
-                android:id="@+id/snapshot_btn"
-                android:text="snapshot"
+                android:id="@+id/record_btn"
+                android:text="start rec"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="40dp"
@@ -96,6 +84,14 @@
                 android:layout_margin="4dp"
                 android:background="@drawable/btn_shape"/>
             <Button
+                android:id="@+id/mute_btn"
+                android:text="mute"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/btn_shape"/>
+            <Button
                 android:id="@+id/stop_call"
                 android:text="stop"
                 android:layout_width="0dp"
@@ -103,15 +99,74 @@
                 android:layout_height="40dp"
                 android:layout_margin="4dp"
                 android:background="@drawable/btn_shape"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
             <Button
-                android:id="@+id/record_btn"
-                android:text="start rec"
+                android:id="@+id/speed_btn"
+                android:text="speed"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/btn_shape"/>
+            <EditText
+                android:id="@+id/speed_scale"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:inputType="number"
+                android:gravity="center"
+                android:text="1"/>
+            <Button
+                android:id="@+id/seek_btn"
+                android:text="seek"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/btn_shape"/>
+            <EditText
+                android:id="@+id/seek_secs"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:text="30"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/download_btn"
+                android:text="download"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="40dp"
                 android:layout_margin="4dp"
                 android:background="@drawable/btn_shape"/>
         </LinearLayout>
+
+        <!-- 进度条 -->
+        <SeekBar
+            android:id="@+id/seek_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
     </LinearLayout>
 
     <!-- 日志区放底部，可滑动 -->
@@ -126,4 +181,4 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"/>
 
-</LinearLayout>
+</LinearLayout> 

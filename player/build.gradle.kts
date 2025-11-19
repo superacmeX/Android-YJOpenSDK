@@ -31,5 +31,6 @@ android {
 
 dependencies {
     api(project(":lib-core"))
-    implementation("androidx.appcompat:appcompat:1.4.1")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation(libs.rmplayer)
 }

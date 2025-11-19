@@ -23,6 +23,8 @@ import java.util.Date
 import java.util.Locale
 import java.util.UUID
 import java.util.function.Consumer
+import com.alibaba.fastjson.JSON
+import com.superacm.demo.player.RMPNetCloudVodPlayerActivity
 
 data class MediaRecord(val type: Int, val startSeconds: Long, val endTimeSeconds: Long)
 class DateViewModel(private val deviceBean: Device?) : ViewModel() {
@@ -95,32 +97,34 @@ class DateViewModel(private val deviceBean: Device?) : ViewModel() {
                     val successful = response.isSuccessful
                     val code = response.body()?.code
                     val codeIsSuccess = code == 0
-                    //                    Log.d(TAG, "successful=$successful, code=$code, response=$response")
-
                     response.body()?.data?.let {
-
-                        val uiDataList = it.eventQueryRespDTOs.map { it ->
+                        val uiDataList = it.eventQueryRespDTOs.map { detail ->
+                            var cvodUrl: String? = null
+                            var ext: String? = null
+                            try {
+                                val payloadObj = JSON.parseObject(detail.payload)
+                                val videoObj = payloadObj.getJSONObject("Video")
+                                cvodUrl = videoObj.getString("Url")
+                                ext = videoObj.getString("Ext")
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
                             EventItemUIData(
-                                dateOffsetSec = beginTime/1000,
-                                picUrl = it.picUrl ?: "",
-                                timeStr = it.eventTime,
+                                dateOffsetSec = beginTime / 1000,
+                                picUrl = detail.picUrl ?: "",
+                                timeStr = detail.eventTime,
                                 type = pageType,
-                                device = deviceBean
+                                device = deviceBean,
+                                cvodUrl = cvodUrl,
+                                ext = ext
                             )
                         }
-
                         itemList.value = uiDataList
                     }
-                    //                    itemList.value = getItemList(newDate)
-                    //                callback?.invoke(
-                    //                    successful && codeIsSuccess,
-                    //                    response.body()?.message ?: ""
-                    //                )
                 }
 
                 override fun onFailure(call: Call<NetResult<EventListBean>>, throwable: Throwable) {
                     Log.d(TAG, "onFailure() called with: call = $call, throwable = $throwable")
-                    //                callback?.invoke(false, throwable.message.toString())
                     dataLoading.value = false
                 }
             })
@@ -235,16 +239,22 @@ class DateViewModel(private val deviceBean: Device?) : ViewModel() {
     }
 
     fun handleClick(ctx : Context, item: EventItemUIData) {
+        Log.d(TAG, "type= ${item.type}, item=$item")
         if (item.type == 2) {
             val intent : Intent = Intent(ctx, RMPNetVodPlayerActivity::class.java)
             val param : PlayerParam = PlayerParam(item.device.deviceName, item.device.productKey)
-
             val record = item.record
             if (record != null) {
                 param.setTimeRange(item.dateOffsetSec + item.record.startSeconds, item.dateOffsetSec + item.record.endTimeSeconds);
             }
-
             intent.putExtra(PlayerParam.PLAY_PARAMS, param);
+            ctx.startActivity(intent)
+        } else if (!item.cvodUrl.isNullOrEmpty()) {
+            // 云存储
+            val intent = Intent(ctx, RMPNetCloudVodPlayerActivity::class.java)
+            val param = PlayerParam(item.device.deviceName, item.device.productKey)
+            param.setCvodUrl(item.cvodUrl, item.ext ?: "{}")
+            intent.putExtra(PlayerParam.PLAY_PARAMS, param)
             ctx.startActivity(intent)
         }
     }

@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- tools:ignore is needed because lint thinks this can be replaced with a merge. Replacing this
+     with a merge causes the fullscreen SurfaceView not to be centered. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="MergeRootFrame">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#0f0f0f0f"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:text="Id: "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/client_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="test_lqp" />
+
+            <Button
+                android:id="@+id/play_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:minWidth="60dp"
+                android:minHeight="35dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textSize="@dimen/btn_text_size"
+                android:background="@drawable/btn_shape"
+                android:text="Play" />
+
+            <Button
+                android:id="@+id/pause_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:minWidth="60dp"
+                android:minHeight="35dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textSize="@dimen/btn_text_size"
+                android:background="@drawable/btn_shape"
+                android:text="pause" />
+
+            <Button
+                android:id="@+id/resume_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:minWidth="60dp"
+                android:minHeight="35dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textSize="@dimen/btn_text_size"
+                android:background="@drawable/btn_shape"
+                android:text="resume" />
+
+            <Button
+                android:id="@+id/stop_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:minWidth="60dp"
+                android:minHeight="35dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textSize="@dimen/btn_text_size"
+                android:background="@drawable/btn_shape"
+                android:text="stop" />
+
+            <Button
+                android:id="@+id/restart_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:minWidth="60dp"
+                android:minHeight="35dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textSize="@dimen/btn_text_size"
+                android:background="@drawable/btn_shape"
+                android:text="restart" />
+
+            <Button
+                android:id="@+id/download_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:minWidth="60dp"
+                android:minHeight="35dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textSize="@dimen/btn_text_size"
+                android:background="@drawable/btn_shape"
+                android:text="Download" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/control_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/record_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:minWidth="50dp"
+                    android:minHeight="35dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:textSize="@dimen/btn_text_size"
+                    android:background="@drawable/btn_shape"
+                    android:text="record"/>
+
+                <Button
+                    android:id="@+id/snapshot_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:minWidth="50dp"
+                    android:minHeight="35dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:textSize="@dimen/btn_text_size"
+                    android:background="@drawable/btn_shape"
+                    android:text="snapshot"/>
+
+                <Button
+                    android:id="@+id/mute_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:minWidth="50dp"
+                    android:minHeight="35dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:textSize="@dimen/btn_text_size"
+                    android:background="@drawable/btn_shape"
+                    android:text="mute"/>
+
+                <Button
+                    android:id="@+id/speed_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minWidth="50dp"
+                    android:minHeight="35dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:textSize="@dimen/btn_text_size"
+                    android:background="@drawable/btn_shape"
+                    android:text="speed" />
+
+                <EditText
+                    android:id="@+id/speed_scale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:text="1">
+                </EditText>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:text="x">
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/seek_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minWidth="55dp"
+                    android:minHeight="35dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:textSize="@dimen/btn_text_size"
+                    android:background="@drawable/btn_shape"
+                    android:text="seekTo" />
+
+                <EditText
+                    android:id="@+id/seek_secs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:text="30">
+                </EditText>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="File: "
+                android:textSize="16sp"
+                android:layout_marginRight="5dp"/>
+
+            <EditText
+                android:id="@+id/file_name_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Enter file name"
+                android:text="100MEDIA/test.mp4"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seek:"
+                android:textSize="16sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"/>
+
+            <EditText
+                android:id="@+id/file_seek_input"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:text="0"
+                android:textSize="14sp"/>
+
+            <CheckBox
+                android:id="@+id/use_file_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Use File"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/log_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scrollbars="vertical" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <com.microbit.rmplayer.RMPVideoView
+            android:id="@+id/video_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/loading_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:gravity="center"
+            android:text="loading"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/progress_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00 / 00:00"
+            android:textSize="14sp"
+            android:layout_marginRight="10dp"/>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="100"
+            android:progress="0"/>
+
+    </LinearLayout>
+
+</LinearLayout>
