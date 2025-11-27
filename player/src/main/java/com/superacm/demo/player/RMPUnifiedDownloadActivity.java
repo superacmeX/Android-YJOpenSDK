@@ -26,7 +26,7 @@ import com.microbit.rmplayer.RMPEngine;
 import com.microbit.rmplayer.ap.RMPApLink;
 import com.microbit.rmplayer.ap.RMPApLinkCallback;
 import com.microbit.rmplayer.core.RMPLog;
-
+import com.superacm.demo.player.PlayerConfig;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -151,9 +151,14 @@ public class RMPUnifiedDownloadActivity extends Activity implements RMPApLinkCal
     private void initApLink() {
         apLink = RMPApLink.create(this, engine);
         if (apLink != null) {
-            apLink.init(config.getLocalIp(), config.getClientId());
-            apLink.connect(config.getApIp(), Integer.parseInt(config.getApPort()));
-            RMPLog.i(TAG, "AP Link created and connecting to " + config.getApIp() + ":" + config.getApPort());
+            String localIp = config.getLocalIp() != null ? config.getLocalIp() : "";
+            String clientId = config.getClientId() != null ? config.getClientId() : "demo_client";
+            String apIp = config.getApIp() != null ? config.getApIp() : "192.168.43.1";
+            String apPort = config.getApPort() != null ? config.getApPort() : "6684";
+
+            apLink.init(localIp, clientId);
+            apLink.connect(apIp, Integer.parseInt(apPort));
+            RMPLog.i(TAG, "AP Link created and connecting to " + apIp + ":" + apPort);
         } else {
             RMPLog.e(TAG, "Failed to create AP Link");
             showToast("Failed to initialize AP Link");

@@ -3,7 +3,6 @@ package com.superacm.demo.player
 import android.content.Context
 import android.util.Log
 import com.microbit.RendererCommon
-import com.microbit.rmplayer.RMPDecoderStrategy
 
 data class PlayerConfig(
     val context: Context,
@@ -19,15 +18,14 @@ data class PlayerConfig(
     val enableHardwareScaler: Boolean = false,
     val enableLogging: Boolean = true,
     val logLevel: Int = Log.INFO,
-    // AP mode configurations
-    val apIp: String = "192.168.43.1",
-    val apPort: String = "6684",
-    val localIp: String = "0.0.0.0",
-    val clientId: String = "demo_client",
-    val vdecodeStrategy: Int = RMPDecoderStrategy.HARDWARE_FIRST
+    // AP mode specific fields
+    val apIp: String? = null,
+    val apPort: String? = null,
+    val localIp: String? = null,
+    val clientId: String? = null,
+    val vdecodeStrategy: Int = 0
 ) {
     companion object {
-        @JvmStatic
         fun createLiveConfig(
             context: Context,
             deviceName: String,
@@ -44,7 +42,6 @@ data class PlayerConfig(
             )
         }
 
-        @JvmStatic
         fun createVodConfig(
             context: Context,
             deviceName: String,
@@ -66,10 +63,10 @@ data class PlayerConfig(
         @JvmStatic
         fun createApLiveConfig(
             context: Context,
-            apIp: String = "192.168.43.1",
-            apPort: String = "6684",
-            localIp: String = "0.0.0.0",
-            clientId: String = "demo_client"
+            apIp: String,
+            apPort: String,
+            localIp: String,
+            clientId: String
         ): PlayerConfig {
             return PlayerConfig(
                 context = context,
@@ -87,10 +84,10 @@ data class PlayerConfig(
         @JvmStatic
         fun createApVodConfig(
             context: Context,
-            apIp: String = "192.168.43.1",
-            apPort: String = "6684",
-            localIp: String = "0.0.0.0",
-            clientId: String = "demo_client"
+            apIp: String,
+            apPort: String,
+            localIp: String,
+            clientId: String
         ): PlayerConfig {
             return PlayerConfig(
                 context = context,
