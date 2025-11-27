@@ -17,6 +17,7 @@ import com.microbit.rmplayer.core.*;
 
 import com.microbit.*;
 import com.superacm.demo.player.util.*;
+import com.superacm.demo.player.PlayerConfig;
 
 import java.io.*;
 import java.text.*;
@@ -93,8 +94,13 @@ public class RMPApLivePlayerActivity extends AppCompatActivity implements RMPApL
         RMPEngine engine = RMPEngine.getDefault(getApplicationContext());
         link = RMPApLink.create(this, engine);
 
-        link.init(config.getLocalIp(), config.getClientId());
-        link.connect(config.getApIp(), Integer.parseInt(config.getApPort()));
+        String localIp = config.getLocalIp() != null ? config.getLocalIp() : "0.0.0.0";
+        String clientId = config.getClientId() != null ? config.getClientId() : "demo_client";
+        String apIp = config.getApIp() != null ? config.getApIp() : "192.168.43.1";
+        String apPort = config.getApPort() != null ? config.getApPort() : "1664";
+
+        link.init(localIp, clientId);
+        link.connect(apIp, Integer.parseInt(apPort));
 
         RMPApConfig apConfig = new RMPApConfig(link);
         factory = RMPApPlayerFactory.create(this, apConfig);
@@ -175,7 +181,8 @@ public class RMPApLivePlayerActivity extends AppCompatActivity implements RMPApL
         logView.setMovementMethod(new ScrollingMovementMethod());
 
         TextView idView = findViewById(R.id.client_id);
-        idView.setText(config.getClientId());
+        String displayClientId = config.getClientId() != null ? config.getClientId() : "demo_client";
+        idView.setText(displayClientId);
 
         stopBtn = findViewById(R.id.stop_call);
         stopBtn.setOnClickListener(new View.OnClickListener() {

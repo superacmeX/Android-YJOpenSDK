@@ -12,6 +12,7 @@ import com.microbit.rmplayer.*;
 import com.microbit.rmplayer.ap.*;
 import com.microbit.rmplayer.core.*;
 import com.superacm.demo.player.util.*;
+import com.superacm.demo.player.PlayerConfig;
 
 import com.microbit.*;
 
@@ -93,8 +94,13 @@ public class RMPApVodPlayerActivity extends AppCompatActivity implements RMPApLi
         RMPEngine engine = RMPEngine.getDefault(getApplicationContext());
         link = RMPApLink.create(this, engine);
 
-        link.init(config.getLocalIp(), config.getClientId());
-        link.connect(config.getApIp(), Integer.parseInt(config.getApPort()));
+        String localIp = config.getLocalIp() != null ? config.getLocalIp() : "";
+        String clientId = config.getClientId() != null ? config.getClientId() : "demo_client";
+        String apIp = config.getApIp() != null ? config.getApIp() : "192.168.43.1";
+        String apPort = config.getApPort() != null ? config.getApPort() : "6684";
+
+        link.init(localIp, clientId);
+        link.connect(apIp, Integer.parseInt(apPort));
 
         RMPApConfig apConfig = new RMPApConfig(link);
         factory = RMPApPlayerFactory.create(this, apConfig);
@@ -173,7 +179,8 @@ public class RMPApVodPlayerActivity extends AppCompatActivity implements RMPApLi
         viewLog = ViewLog.createViewLog(logView, TAG);
 
         TextView idView = findViewById(R.id.client_id);
-        idView.setText(config.getClientId());
+        String displayClientId = config.getClientId() != null ? config.getClientId() : "demo_client";
+        idView.setText(displayClientId);
         
         playBtn = findViewById(R.id.play_btn);
         playBtn.setOnClickListener(view -> {
@@ -557,7 +564,9 @@ public class RMPApVodPlayerActivity extends AppCompatActivity implements RMPApLi
                 count++;
                 if (link != null) {
                     link.disconnect();
-                    link.connect(config.getApIp(), Integer.parseInt(config.getApPort()));
+                    String reconnectApIp = config.getApIp() != null ? config.getApIp() : "192.168.43.1";
+                    String reconnectApPort = config.getApPort() != null ? config.getApPort() : "6684";
+                    link.connect(reconnectApIp, Integer.parseInt(reconnectApPort));
                 }
                 return;
             }
