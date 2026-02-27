@@ -134,7 +134,7 @@ class LoginActivity : AppCompatActivity(), LoginOnOtherDeviceTips {
     private fun processLogin(username: String?, password: String?) {
         job = CoroutineScope(Dispatchers.Main).launch {
             try {
-                YJLoginBusiness.login("924243387@qq.com","Zl12341234",object: ILoginCallback {
+                YJLoginBusiness.login(username!!,password!!,object: ILoginCallback {
                     override fun onLoginSuccess() {
                         LoginLogger.log("loginSuccess")
 
