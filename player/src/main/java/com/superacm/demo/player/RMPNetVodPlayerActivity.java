@@ -1,7 +1,7 @@
 package com.superacm.demo.player;
 
+import android.annotation.SuppressLint;
 import android.app.*;
-import android.content.pm.*;
 import android.content.res.*;
 import android.os.*;
 import android.util.*;
@@ -9,7 +9,6 @@ import android.view.*;
 import android.widget.*;
 
 import androidx.annotation.*;
-import androidx.appcompat.app.*;
 
 import com.microbit.*;
 import com.microbit.rmplayer.*;
@@ -18,6 +17,7 @@ import com.microbit.rmplayer.net.*;
 import com.superacm.demo.player.util.*;
 
 import java.io.*;
+import java.util.Objects;
 
 public class RMPNetVodPlayerActivity extends Activity implements RMPlayerListener {
     private final static String TAG = "RMPNetVodPlayer";
@@ -51,7 +51,7 @@ public class RMPNetVodPlayerActivity extends Activity implements RMPlayerListene
         RMPLog.setLogCallback(new RMPLog.LogCallback() {
             @Override
             public void logMsg(int level, String tag, String msg) {
-                if (tag == Post2UserPlayListener.TAG) {
+                if (Objects.equals(tag, Post2UserPlayListener.TAG)) {
                     viewLog.printLine(msg);
                 }
                 Log.println(level, tag, msg) ;
@@ -70,6 +70,7 @@ public class RMPNetVodPlayerActivity extends Activity implements RMPlayerListene
         RMPLog.i(TAG, "onConfigurationChanged orientation: %d", newConfig.orientation);
     }
 
+    @SuppressLint("SetTextI18n")
     private void updateRecordBtnUi() {
         if (isRecording) {
             recordBtn.setText("stopRec");
@@ -102,7 +103,7 @@ public class RMPNetVodPlayerActivity extends Activity implements RMPlayerListene
     private void initPlayer() {
         renderView.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
 
-        RMPNetPlayerBuilder builder = new RMPNetPlayerBuilder(getApplicationContext());
+        RMPNetPlayerBuilder builder = new RMPNetPlayerBuilder(getApplicationContext(), RMPEngine.getDefault(getApplicationContext()));
         builder.setDeviceInfo(playParam.deviceName, playParam.productKey);
 
         vodPlayer = builder.createVodPlayer();
@@ -204,13 +205,6 @@ public class RMPNetVodPlayerActivity extends Activity implements RMPlayerListene
 
     private String getRecordingFile() {
         File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "net-rec-vod-" + System.currentTimeMillis() + ".mp4");
-        //if (!f.exists()) {
-        //    try {
-        //        f.createNewFile();
-        //    } catch (IOException e) {
-        //        throw new RuntimeException(e);
-        //    }
-        //}
         return f.getAbsolutePath();
     }
 
@@ -240,14 +234,12 @@ public class RMPNetVodPlayerActivity extends Activity implements RMPlayerListene
 
     private void startPlayer() {
         if (playParam.startSec != 0) {
-            vodPlayer.setDeviceSource(playParam.startSec, playParam.endSec, 0);
+            vodPlayer.setDeviceSource(playParam.startSec, playParam.endSec);
         } else {
             long nowSec = System.currentTimeMillis()/1000;
             int rangeMin = 30;
             long startSec = nowSec - 60*rangeMin;
-            long seekSec = 0;
-
-            vodPlayer.setDeviceSource(startSec, nowSec, seekSec);
+            vodPlayer.setDeviceSource(startSec, nowSec);
         }
 
         vodPlayer.setVideoView(renderView);
@@ -258,16 +250,18 @@ public class RMPNetVodPlayerActivity extends Activity implements RMPlayerListene
 
     @Override
     public void OnError(int type, int code, String desc) {
-
+        RMPLog.e(TAG, "Player error: type=%d, code=%d, desc=%s", type, code, desc);
+        viewLog.printLine("Player error: type=%d, code=%d, desc=%s", type, code, desc);
     }
 
     @Override
     public void OnPlayerStateChange(int state, int extra) {
+        RMPLog.i(TAG, "Player state changed: state=%d, extra=%d", state, extra);
         if (state == RMPlayerState.PLAYER_STARTED) {
             loadingView.post(() -> {
                 loadingView.setVisibility(View.GONE);
             });
-        } else if (state == RMPlayerState.PLAYER_BUFFERING) {
+        } else {
             loadingView.post(() -> {
                 loadingView.setVisibility(View.VISIBLE);
             });
@@ -276,61 +270,68 @@ public class RMPNetVodPlayerActivity extends Activity implements RMPlayerListene
 
     @Override
     public void OnTalkStateChange(int state) {
-
+        RMPLog.i(TAG, "Talk state changed: state=%d", state);
     }
 
     @Override
     public void OnPlaybackSpeedUpdate(int speed) {
-
+        RMPLog.i(TAG, "Playback speed updated: speed=%d", speed);
+        viewLog.printLine("Playback speed updated: %dx", speed);
     }
 
     @Override
     public void OnSeekComplete(boolean success) {
-
+        RMPLog.i(TAG, "Seek complete: success=%b", success);
+        viewLog.printLine("Seek complete: success=%b", success);
     }
 
     @Override
     public void OnBufferStateUpdate(int state, long buffer_duration) {
-
+        RMPLog.i(TAG, "Buffer state update: state=%d, duration=%d", state, buffer_duration);
     }
 
     @Override
     public void OnFirstFrameRendered(long elapse_ms) {
-
+        RMPLog.i(TAG, "First frame rendered: elapse=%dms", elapse_ms);
     }
 
     @Override
-    public void OnVideoSizeChanged(int width, int height) {
-
+    public void OnVideoSizeChanged(int channel, int width, int height) {
+        RMPLog.i(TAG, "Video size changed: %dx%d", width, height);
     }
 
     @Override
     public void OnSnapshotResult(String file, int result, String desc) {
-
+        RMPLog.i(TAG, "Snapshot result: file=%s, result=%d, desc=%s", file, result, desc);
     }
 
     @Override
     public void OnFileRecordingStart(String file) {
-
+        RMPLog.i(TAG, "File recording started: %s", file);
+        viewLog.printLine("File recording started: %s", file);
     }
 
     @Override
     public void OnFileRecordingError(String file, int code, String desc) {
-
+        RMPLog.e(TAG, "File recording error: file=%s, code=%d, desc=%s", file, code, desc);
+        viewLog.printLine("File recording error: file=%s, code=%d, desc=%s", file, code, desc);
     }
 
     @Override
     public void OnFileRecordingFinish(String file) {
-
+        RMPLog.i(TAG, "File recording finished: %s", file);
+        viewLog.printLine("File recording finished: %s", file);
     }
 
     @Override
     public void OnVodPlayProgress(long millis) {
-
+        RMPLog.i(TAG, "VOD play progress: %dms", millis);
+        viewLog.printLine("VOD play progress: %dms", millis);
     }
 
     @Override
     public void OnVodPlayComplete() {
-
+        RMPLog.i(TAG, "VOD play complete");
+        viewLog.printLine("VOD play complete");
     }
 }
