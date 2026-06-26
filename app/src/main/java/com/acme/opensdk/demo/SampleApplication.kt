@@ -31,6 +31,7 @@ class SampleApplication : Application() {
         super.onCreate()
 
         ImageLoadUtil.init(this)
+        val region = REGION.CHINA
         val config = Configuration.Builder(this)
             .gatewayConfig(
                 gatewayConfig = GatewayConfig.Builder()
@@ -47,6 +48,7 @@ class SampleApplication : Application() {
                     Log.println(priority, tag, message)
                 }
             })
+            .params("countryCode",if(region == REGION.CHINA)"CN" else "US")
             .build()
 
         YJSessionManager.setRefreshTokenInvalidListener(object : RefreshTokenInvalidListener {
