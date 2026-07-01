@@ -10,10 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import com.acme.common.account.login.ILoginBusiness
+import com.acme.common.account.login.IYJLoginBusiness
 import com.acme.common.account.login.ILoginCallback
 import com.acme.common.account.login.YJLoginBusiness
-import com.acme.common.account.login.RequestSMSCodeType
+import com.acme.common.account.login.YJRequestSMSCodeType
 import com.acme.login.util.LoginLogger
 import com.acme.login.view.InnerLoginLogger
 import com.acme.login.view.Toasts
@@ -54,7 +54,7 @@ class LoginActivity : AppCompatActivity(), LoginOnOtherDeviceTips {
     private var loginFailCode: Int? = null
     private var showed: Boolean = false
     private var navController:NavController? = null
-    private val loginService:ILoginBusiness= YJLoginBusiness
+    private val loginService:IYJLoginBusiness= YJLoginBusiness
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(null)
@@ -84,7 +84,7 @@ class LoginActivity : AppCompatActivity(), LoginOnOtherDeviceTips {
                 putSerializable(
                     VerifyCodeInputFragment.ARGS_SMS_CODE_COMPLETE,
                     VerifyCodeInputData(
-                        requestType = RequestSMSCodeType.USERCHANGEBINDSTEPTWO,
+                        requestType = YJRequestSMSCodeType.USERCHANGEBINDSTEPTWO,
                     )
                 )
 
@@ -123,7 +123,7 @@ class LoginActivity : AppCompatActivity(), LoginOnOtherDeviceTips {
                 putSerializable(
                     VerifyCodeInputFragment.ARGS_SMS_CODE_COMPLETE,
                     VerifyCodeInputData(
-                        requestType = RequestSMSCodeType.SIGN_UP,
+                        requestType = YJRequestSMSCodeType.SIGN_UP,
                         email = "andymao@qq.com"
                     )
                 )

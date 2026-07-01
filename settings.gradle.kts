@@ -1,7 +1,7 @@
 pluginManagement {
     repositories {
-        maven { setUrl("${rootProject.projectDir}/repo/") }
         maven { setUrl("https://maven.aliyun.com/repository/public/") }
+        maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin/") }
         google {
             content {
                 includeGroupByRegex("com\\.android.*")
@@ -22,7 +22,8 @@ pluginManagement {
 }
 dependencyResolutionManagement {
     repositories {
-        maven { setUrl("${rootProject.projectDir}/repo/") }
+        maven { setUrl("https://maven.aliyun.com/repository/public/") }
+        maven { setUrl("https://maven.aliyun.com/repository/google/") }
 
         maven {
             setUrl("https://nexus.superacme.com/repository/maven-releases/")
@@ -42,9 +43,6 @@ dependencyResolutionManagement {
 
         google()
         mavenCentral()
-        maven { setUrl("https://maven.aliyun.com/repository/public/") }
-
-
     }
 }
 

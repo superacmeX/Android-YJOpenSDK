@@ -79,21 +79,15 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
     implementation("com.alibaba:fastjson:1.2.40")
+    implementation("com.superacme.android:open-common-account:0.5.9")
+    implementation("com.superacme.android:common-network:0.0.16-SNAPSHOT")
     debugImplementation(libs.androidx.ui.tooling)
     api(project(":lib-core"))
 }
 
-sourceSets {
-    create("main") {
-        java.srcDirs("src/main/java")
-    }
-
-}
-
 val sourceJar by tasks.registering(Jar::class) {
-//    classifier = "sources"
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    from(sourceSets["main"].allSource)
+    from("src/main/java")
 }
 
 

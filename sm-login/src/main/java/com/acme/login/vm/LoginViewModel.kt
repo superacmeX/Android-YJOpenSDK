@@ -6,10 +6,10 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.acme.common.account.login.ILoginBusiness
+import com.acme.common.account.login.IYJLoginBusiness
 import com.acme.common.account.login.ILoginCallback
 import com.acme.common.account.login.YJLoginBusiness
-import com.acme.common.account.login.RequestSMSCodeType
+import com.acme.common.account.login.YJRequestSMSCodeType
 import com.acme.login.util.LoginLogger
 import com.acme.login.view.InnerLoginLogger
 import com.alibaba.fastjson.JSONObject
@@ -64,7 +64,7 @@ class LoginViewModel : ViewModel() {
     @Volatile
     var userNameChanged = false
 
-    val loginService: ILoginBusiness? = YJLoginBusiness
+    val loginService: IYJLoginBusiness? = YJLoginBusiness
 
     fun refreshUserName() {
         if (!refershed) {
@@ -86,7 +86,7 @@ class LoginViewModel : ViewModel() {
     suspend fun getSMSCode2(
         phoneNum: String? = null,
         phoneArea: String? = null,
-        requestType: RequestSMSCodeType,
+        requestType: YJRequestSMSCodeType,
         email: String? = null,
         callback: ((Boolean, String) -> Unit)? = null
     ) {
@@ -97,7 +97,7 @@ class LoginViewModel : ViewModel() {
             country = "CN",
             requestType = requestType,
             email = email
-        ) { result, msg ->
+        ) { result: Boolean, msg: String? ->
             callback?.invoke(result, msg ?: "")
         }
     }
@@ -118,7 +118,7 @@ class LoginViewModel : ViewModel() {
             pwdMD5 = pwdMD5,
             requestType = requestType,
             phoneArea = phoneArea
-        ) { result, msg ->
+        ) { result: Boolean, msg: String? ->
             callback?.invoke(result, msg ?: "")
         }
     }
@@ -181,17 +181,17 @@ class LoginViewModel : ViewModel() {
         phoneAreaCode: String?,
         email: String?
     ): Pair<Boolean, Boolean> {
-        return suspendCancellableCoroutine {
+        return suspendCancellableCoroutine { cont ->
             loginService?.loginWithSMSCode(
                 code = code,
                 phoneCode = phoneCode,
                 phoneAreaCode = phoneAreaCode,
                 email = email
-            ) { result, firstLogin, msg ->
+            ) { result: Boolean, firstLogin: Boolean, msg: String? ->
                 if (result) {
-                    it.resume(Pair(true, firstLogin))
+                    cont.resume(Pair(true, firstLogin))
                 } else {
-                    it.resume(Pair(false, false))
+                    cont.resume(Pair(false, false))
                 }
             }
         }
@@ -217,18 +217,18 @@ class LoginViewModel : ViewModel() {
 //        return loginService?.checkSMSCode(code, requestType, phoneCode, phoneAreaCode, email)
 //            ?: false
 
-        return suspendCancellableCoroutine<Boolean> {
+        return suspendCancellableCoroutine<Boolean> { cont ->
             loginService?.checkSMSCode(
                 code = code,
                 requestType = requestType,
                 phoneCode = phoneCode,
                 phoneAreaCode = phoneAreaCode,
                 email = email
-            ) { result, msg ->
+            ) { result: Boolean, msg: String? ->
                 if (result) {
-                    it.resume(true)
+                    cont.resume(true)
                 } else {
-                    it.resume(false)
+                    cont.resume(false)
                 }
             }
         }

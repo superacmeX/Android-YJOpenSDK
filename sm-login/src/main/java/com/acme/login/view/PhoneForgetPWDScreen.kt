@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.acme.common.account.login.RequestSMSCodeType
+import com.acme.common.account.login.YJRequestSMSCodeType
 import com.acme.login.R
 import com.acme.login.view.InnerLoginLogger
 import com.acme.login.view.LoginEvent
@@ -24,7 +24,7 @@ private val logTag = "andymao->PhoneForgetPWDScreen"
 
 @Composable
 fun PhoneForgetPWDScreen(
-    requestType: RequestSMSCodeType,
+    requestType: YJRequestSMSCodeType,
     scene: String? = null,
     lastUsrName: String,
     onValueChange: (String) -> Unit = {},
@@ -122,5 +122,5 @@ fun getStringTitleId(scene: String?): Int {
 @Preview
 @Composable
 fun PhoneForgetPWDScreenPreview() {
-    PhoneForgetPWDScreen(RequestSMSCodeType.RESET_PWD,"","") {}
+    PhoneForgetPWDScreen(YJRequestSMSCodeType.RESET_PWD,"","") {}
 }
