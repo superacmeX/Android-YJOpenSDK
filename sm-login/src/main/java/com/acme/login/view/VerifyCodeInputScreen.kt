@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.times
 import com.acme.common.account.logger.LoginLogger
-import com.acme.common.account.login.RequestSMSCodeType
+import com.acme.common.account.login.YJRequestSMSCodeType
 import com.acme.login.R
 import com.acme.login.util.getStringWhenNeedPreview
 import com.acme.login.viewcomponent.CodeTextField
@@ -39,7 +39,7 @@ import com.superacme.login.view.textStylePurple32
  */
 data class VerifyCodeInputData(
     val code: String? = null,
-    val requestType: RequestSMSCodeType,
+    val requestType: YJRequestSMSCodeType,
     val phone: String? = null,
     val phoneArea: String? = null,
     val email: String? = null

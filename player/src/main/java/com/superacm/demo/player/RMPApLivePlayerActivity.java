@@ -436,6 +436,11 @@ public class RMPApLivePlayerActivity extends AppCompatActivity implements RMPApL
     }
 
     @Override
+    public void onLinkTypeDetected(com.microbit.rmplayer.RMPLinkType linkType) {
+        RMPLog.i(TAG, "onLinkTypeDetected: " + linkType);
+    }
+
+    @Override
     public void OnPlayerStateChange(int state, int extra) {
         if (state == RMPlayerState.PLAYER_STARTED) {
             loadingView.post(() -> {

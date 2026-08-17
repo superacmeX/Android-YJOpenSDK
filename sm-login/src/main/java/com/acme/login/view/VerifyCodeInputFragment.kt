@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.acme.common.account.login.RequestSMSCodeType
+import com.acme.common.account.login.YJRequestSMSCodeType
 import com.acme.login.util.LoginLogger
 import com.acme.login.vm.LoginState
 import com.acme.login.vm.LoginViewModel
@@ -32,7 +32,7 @@ class VerifyCodeInputFragment : Fragment() {
         LoginViewModelFactory()
     }
 
-    private var requestType: RequestSMSCodeType = RequestSMSCodeType.LOGIN
+    private var requestType: YJRequestSMSCodeType = YJRequestSMSCodeType.LOGIN
 
     private var verifyCodeInputData: VerifyCodeInputData? = null
 
@@ -111,7 +111,7 @@ class VerifyCodeInputFragment : Fragment() {
 
         lifecycleScope.launch(Dispatchers.IO) {
             LoginLogger.log("handleSMSCodeComplete: begin")
-            if (requestType == RequestSMSCodeType.SIGN_UP || requestType == RequestSMSCodeType.FORGETPASS) {
+            if (requestType == YJRequestSMSCodeType.SIGN_UP || requestType == YJRequestSMSCodeType.FORGETPASS) {
                 val result = loginViewModel.checkSMSCode(
                     code = event.code,
                     requestType = requestType.str.toLowerCase(), // 不要用name 服务端判断的是signup 不是sign_up
@@ -137,7 +137,7 @@ class VerifyCodeInputFragment : Fragment() {
                         Toasts.showToast(requireActivity().getString(R.string.sm_login_code_login_failed))
                     }
                 }
-            } else if (requestType == RequestSMSCodeType.USERCHANGEBINDSTEPTWO) {
+            } else if (requestType == YJRequestSMSCodeType.USERCHANGEBINDSTEPTWO) {
 
                 val result2 = loginViewModel.checkSMSCode(
                     event.code,

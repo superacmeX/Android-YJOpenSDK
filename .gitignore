@@ -15,3 +15,4 @@ app/release/**
 .externalNativeBuild
 .cxx
 local.properties
+/**/bin/**

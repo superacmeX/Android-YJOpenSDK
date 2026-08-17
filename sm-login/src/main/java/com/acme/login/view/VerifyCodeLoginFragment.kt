@@ -15,7 +15,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import com.acme.common.account.login.RequestSMSCodeType
+import com.acme.common.account.login.YJRequestSMSCodeType
 import com.acme.login.R
 import com.acme.login.Screen
 import com.acme.login.loginInternalNavigate
@@ -255,11 +255,11 @@ class VerifyCodeLoginFragment : Fragment() {
     private fun handleGetVerifyCodeEvent(event: LoginEvent.GetSMSCodeEvent) {
         val data = if (event.email != null) {
             VerifyCodeInputData(
-                requestType = RequestSMSCodeType.LOGIN, email = event.email
+                requestType = YJRequestSMSCodeType.LOGIN, email = event.email
             )
         } else {
             VerifyCodeInputData(
-                requestType = RequestSMSCodeType.LOGIN,
+                requestType = YJRequestSMSCodeType.LOGIN,
                 phone = event.phoneNum,
                 phoneArea = "86"
             )

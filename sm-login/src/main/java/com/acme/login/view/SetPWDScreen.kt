@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.acme.common.account.login.RequestSMSCodeType
+import com.acme.common.account.login.YJRequestSMSCodeType
 import com.acme.login.util.LoginLogger
 import com.acme.login.util.PWDUtils
 import com.acme.login.util.getStringWhenNeedPreview
@@ -43,24 +43,24 @@ fun originalPwdValid(input: String): Boolean {
 @Preview()
 @Composable
 fun PreviewSetPWDScreen(): Unit {
-    SetPWDScreen(RequestSMSCodeType.FORGETPASS) {}
+    SetPWDScreen(YJRequestSMSCodeType.FORGETPASS) {}
 }
 
 @Preview()
 @Composable
 fun PreviewSetPWDScreen2(): Unit {
-    SetPWDScreen(RequestSMSCodeType.RESET_PWD) {}
+    SetPWDScreen(YJRequestSMSCodeType.RESET_PWD) {}
 }
 
 @Preview()
 @Composable
 fun PreviewSetPWDScreen3(): Unit {
-    SetPWDScreen(RequestSMSCodeType.SIGN_UP) {}
+    SetPWDScreen(YJRequestSMSCodeType.SIGN_UP) {}
 }
 
 @Composable
 fun SetPWDScreen(
-    requestType: RequestSMSCodeType,
+    requestType: YJRequestSMSCodeType,
     onEvent: (LoginEvent) -> Unit
 ) {
     Surface(
@@ -75,9 +75,9 @@ fun SetPWDScreen(
                     .padding(start = pageMarginLeft, end = pageMarginLeft, top = 264.sdp)
             ) {
                 val titleId = when (requestType) {
-                    RequestSMSCodeType.SIGN_UP -> R.string.sm_login_set_pwd
-                    RequestSMSCodeType.FORGETPASS -> R.string.sm_login_reset_pwd
-                    RequestSMSCodeType.RESET_PWD -> R.string.sm_login_modify_pwd
+                    YJRequestSMSCodeType.SIGN_UP -> R.string.sm_login_set_pwd
+                    YJRequestSMSCodeType.FORGETPASS -> R.string.sm_login_reset_pwd
+                    YJRequestSMSCodeType.RESET_PWD -> R.string.sm_login_modify_pwd
                     else -> R.string.sm_login_set_pwd
                 }
                 val showPWD1ErrorTip = remember {
@@ -114,7 +114,7 @@ fun SetPWDScreen(
                     mutableStateOf(false)
                 }
 
-                val showOriginalPwdInput = requestType == RequestSMSCodeType.RESET_PWD
+                val showOriginalPwdInput = requestType == YJRequestSMSCodeType.RESET_PWD
 
                 if (showOriginalPwdInput) {
                     PwdInputText(
@@ -135,7 +135,7 @@ fun SetPWDScreen(
                 val topPadding = if (showOriginalPwdInput) 2.sdp else 72.sdp
 
                 val firstPWDHint =
-                    if (showOriginalPwdInput || requestType == RequestSMSCodeType.FORGETPASS) R.string.sm_login_new_password_hint else R.string.sm_login_new_password_hint
+                    if (showOriginalPwdInput || requestType == YJRequestSMSCodeType.FORGETPASS) R.string.sm_login_new_password_hint else R.string.sm_login_new_password_hint
                 PwdInputText(
                     modifier = Modifier.padding(top = topPadding),
                     pwdState = pwdText,
@@ -152,7 +152,7 @@ fun SetPWDScreen(
                 Spacer(modifier = Modifier.height(30.sdp))
 
                 val secondPWDHint =
-                    if (showOriginalPwdInput || requestType == RequestSMSCodeType.FORGETPASS) R.string.sm_login_new_again_password_hint else R.string.sm_login_new_again_password_hint
+                    if (showOriginalPwdInput || requestType == YJRequestSMSCodeType.FORGETPASS) R.string.sm_login_new_again_password_hint else R.string.sm_login_new_again_password_hint
 
                 PwdInputText(
                     modifier = Modifier.padding(top = 2.sdp),

@@ -12,7 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.acme.common.account.login.ILoginCallback
-import com.acme.common.account.login.RequestSMSCodeType
+import com.acme.common.account.login.YJRequestSMSCodeType
 import com.acme.login.R
 import com.acme.login.Screen
 import com.acme.login.loginInternalNavigate
@@ -44,7 +44,7 @@ class SetPWDFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return ComposeView(requireContext()).apply {
-            val requestType = verifyCodeInputData?.requestType ?: RequestSMSCodeType.RESET_PWD
+            val requestType = verifyCodeInputData?.requestType ?: YJRequestSMSCodeType.RESET_PWD
             setContent {
                 SetPWDScreen(requestType) { event ->
                     when (event) {
@@ -57,7 +57,7 @@ class SetPWDFragment : Fragment() {
                         }
 
                         is LoginEvent.BackPressed -> {
-                            if (requestType == RequestSMSCodeType.RESET_PWD) {
+                            if (requestType == YJRequestSMSCodeType.RESET_PWD) {
                                 activity?.finish()
                             } else {
                                 findNavController().popBackStack()
@@ -139,7 +139,7 @@ class SetPWDFragment : Fragment() {
             val uname = verifyCodeInputData.phone ?: verifyCodeInputData.email!!
             val pwdMD5 = StringUtil.stringToMD5v2(pwdText)!!
 
-            if (verifyCodeInputData.requestType == RequestSMSCodeType.SIGN_UP) {
+            if (verifyCodeInputData.requestType == YJRequestSMSCodeType.SIGN_UP) {
                 loginViewModel.register(
                     phoneNum,
                     verifyCodeInputData.email,
@@ -171,7 +171,7 @@ class SetPWDFragment : Fragment() {
                         }
                     }
                 }
-            } else if (verifyCodeInputData.requestType == RequestSMSCodeType.FORGETPASS) {
+            } else if (verifyCodeInputData.requestType == YJRequestSMSCodeType.FORGETPASS) {
                 if (loadingShow.value) {
                     LoginLogger.log("return when forget pass, in loading")
                 } else {

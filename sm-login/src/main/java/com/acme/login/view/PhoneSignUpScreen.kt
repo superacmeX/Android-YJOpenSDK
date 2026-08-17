@@ -22,7 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.acme.common.account.login.RequestSMSCodeType
+import com.acme.common.account.login.YJRequestSMSCodeType
 import com.acme.login.R
 import com.acme.login.view.LoginEvent
 import com.acme.login.view.PrivacyAgreementCheckBox
@@ -81,12 +81,12 @@ fun PhoneSignUpScreen(
                             val codeData = if (!phoneOrEmailState.isEmail()) {
                                 VerifyCodeInputData(
                                     phone = phoneOrEmailState.text,
-                                    requestType = RequestSMSCodeType.SIGN_UP
+                                    requestType = YJRequestSMSCodeType.SIGN_UP
                                 )
                             } else {
                                 VerifyCodeInputData(
                                     email = phoneOrEmailState.text,
-                                    requestType = RequestSMSCodeType.SIGN_UP
+                                    requestType = YJRequestSMSCodeType.SIGN_UP
                                 )
                             }
 

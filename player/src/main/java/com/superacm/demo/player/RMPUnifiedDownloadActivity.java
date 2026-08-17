@@ -737,6 +737,11 @@ public class RMPUnifiedDownloadActivity extends Activity implements RMPApLinkCal
     public void OnLinkLogFile(int seq, int total_seq, byte[] payload) {}
 
     @Override
+    public void onLinkTypeDetected(com.microbit.rmplayer.RMPLinkType linkType) {
+        RMPLog.i(TAG, "onLinkTypeDetected: " + linkType);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (downloadManager != null) {
