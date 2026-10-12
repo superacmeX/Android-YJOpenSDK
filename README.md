@@ -11,6 +11,14 @@ https://alidocs.dingtalk.com/i/p/2ZRPG24ANMrXBpvbBgX4YlpoArjJ3m8e
 # 开放平台设备消息对接文档
 https://alidocs.dingtalk.com/i/p/2ZRPG24ANMrXBpvbBgX413PE3rvl2m8e
 
+# 物模型文档
+
+[物模型全集.json](物模型全集.json)
+
+
+# 智能算法
+[智能算法能力说明.md](智能算法能力说明.md)
+
 
 # 使用Demo注意事项
 Demo 运行起来最好用OpenSDK自有账户对接的方式，如果要用研极自己的账号体系，目前Demo 只开放 邮箱注册
